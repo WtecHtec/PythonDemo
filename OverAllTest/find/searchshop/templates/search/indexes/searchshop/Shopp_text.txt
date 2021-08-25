@@ -1,0 +1,3 @@
+{{object.shop_name}}
+{{object.shop_dsc}}
+{{object.shop_price}}

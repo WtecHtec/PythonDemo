@@ -1,0 +1,42 @@
+{% load highlight %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <style>
+        span.highlighted {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="search">
+        <form method="get" action="{% url 'shop:search' %}">
+            <input type="text" name="q" placeholder="a搜索商品">
+            <input type="submit" value="搜索">
+        </form>
+    </div>
+
+
+
+
+    {% if shop_list and query %}
+    <ul>
+        {% for question in shop_list %}
+        <li>
+            {% highlight question.object.shop_name with query %}
+            价格： {% highlight question.object.shop_price with query %}
+            <span class="post-author"> <a> {% highlight question.object.shop_dsc with query %} </a></span>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No polls are available.</p>
+    {% endif %}
+
+</body>
+
+</html>
